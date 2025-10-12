@@ -131,7 +131,7 @@
         <input
           type="number"
           id="questionLimit"
-          placeholder="輸入題數,至多75題 / Enter number of questions"
+          placeholder="輸入題數,至多201題 / Enter number of questions"
           style="width:100%;padding:8px;margin-bottom:10px;font-size:1.4em;"
         />
         <button id="startBtn" class="btn">開始測驗 / Start Quiz</button>
@@ -1658,6 +1658,383 @@
       "D. 4, 2, 1, 3"
     ],
     answer: "B"
+  },
+  {
+    question: "決策過程的第⼀步是輸入，最後⼀個階段是⾏動和反饋。三個階段之間的正確順序是什麼？\n1）察覺 2）決定 3）注意\nThe first step of the decision making process is the input and the last stage is action and feedback. What is the correct ordering of the three stages between?\n1) awareness 2) decision 3) attention",
+    options: [
+      "A. 2, 3, 1",
+      "B. 1, 3, 2",
+      "C. 3, 1, 2",
+      "D. 3, 2, 1"
+    ],
+    answer: "C"
+  },
+  {
+    question: "您會注意到⼀個引擎的起火信號當發動機處於慢⾞狀態。什麼階段是在你的決策過程中？\nYou notice an engine fire signal when the engine is idle. What stage of the decision process are you in?",
+    options: [
+      "A. 輸入 input",
+      "B. 注意 attention",
+      "C. 察覺 awareness",
+      "D. 決定 decision"
+    ],
+    answer: "B"
+  },
+  {
+    question: "您會注意到⼀個引擎的起火信號，當發動機處於慢⾞狀態並思考造成的原因。什麼階段是在你的決策過程中？\nYou notice an engine fire signal when the engine is idle and think about the cause. What stage of the decision process are you in?",
+    options: [
+      "A. 輸入 input",
+      "B. 注意 attention",
+      "C. 察覺 awareness",
+      "D. 決定 decision"
+    ],
+    answer: "C"
+  },
+  {
+    question: "維修及檢驗⼈員不依照建立的程序與⽅法，是為？\nMaintenance and inspection personnel not following established procedures is classified as?",
+    options: [
+      "A. ⼈為錯誤 Human error",
+      "B. 潛在錯誤 Latent error",
+      "C. 監督錯誤 Supervisory error",
+      "D. 主動錯誤 Active error"
+    ],
+    answer: "A"
+  },
+  {
+    question: "非同步的溝通包括？\nAsynchronous communication includes?",
+    options: [
+      "A. ⾯對⾯ Face-to-face",
+      "B. 無線電即時語⾳ Radio real-time voice",
+      "C. 技術⼿冊、備忘錄、諮詢通告 Technical manuals, memos, advisory circulars",
+      "D. ⼯作後報告 Post-job briefing"
+    ],
+    answer: "C"
+  },
+  {
+    question: "慢波睡眠？\nSlow-wave sleep corresponds to?",
+    options: [
+      "A. 1–2 階段 Stage 1–2",
+      "B. 2–4 階段 Stage 2–4",
+      "C. 反常睡眠 Paradoxical sleep",
+      "D. 快速眼動 REM sleep"
+    ],
+    answer: "B"
+  },
+  {
+    question: "在燃油箱的⼯作中感到恐慌症發作，該怎麼做？\nYou are working in a fuel cell and feel a panic attack starting. What should you do?",
+    options: [
+      "A. 告訴同事 Tell your co-workers",
+      "B. 數到⼆⼗ Count to twenty",
+      "C. 專注在⼯作 Focus on your work",
+      "D. 深呼吸 Take a deep breath"
+    ],
+    answer: "A"
+  },
+  {
+    question: "瞳孔變⼩…\nPupils become smaller…",
+    options: [
+      "A. 在漸增的光照情況下 with increasing light",
+      "B. 在集中視網膜中央窩 at the fovea",
+      "C. 以集中視柱細胞 due to cone concentration",
+      "D. 在漸低的光照情況下 with decreasing light"
+    ],
+    answer: "A"
+  },
+  {
+    question: "眼睛如何調節進光量？\nHow does the eye regulate the amount of incoming light?",
+    options: [
+      "A. 視神經 Optic nerve",
+      "B. 瞳孔縮放 Pupillary reflex",
+      "C. 感光細胞 Rods and cones",
+      "D. 眨眼速率 Blink rate"
+    ],
+    answer: "B"
+  },
+  {
+    question: "何者不是儀錶板優先提供的基本資訊？\nWhich is NOT a primary instrument/basic flight info?",
+    options: [
+      "A. 航向 Heading",
+      "B. 攻⾓ Angle of attack",
+      "C. 姿態 Attitude",
+      "D. 速度 Airspeed"
+    ],
+    answer: "B"
+  },
+  {
+    question: "當計劃⼀項任務時，督導⼈必須做什麼？\nWhen planning a task, what must a supervisor do?",
+    options: [
+      "A. 增加成員間同儕壓⼒ Increase peer pressure",
+      "B. 考慮需要的施⼯⽅法和⼯具 Consider required methods and tools",
+      "C. 在任務的全部資料上簽名 Sign all task documents",
+      "D. 單獨集中於⼀項⼯作 Focus only on a single specific job"
+    ],
+    answer: "B"
+  },
+  {
+    question: "⼀個正常運作的團隊要如何相亙⽀持？\nHow should a well-functioning team support each other?",
+    options: [
+      "A. 做⼀樣的⼯作量 Do the same workload",
+      "B. 找到團隊成員的缺點 Find team members’ faults",
+      "C. 在弱點上⼯作 Work on weaknesses",
+      "D. 提⾼⾃⼰的能⼒ Improve one’s own capability"
+    ],
+    answer: "D"
+  },
+  {
+    question: "什麼類型的照明提供最好的⾊覺？\nWhich lighting gives the best color rendering?",
+    options: [
+      "A. ⽔銀燈 Mercury lamp",
+      "B. ⿄素燈 (Sodium/other) lamp",
+      "C. ⽩熱燈 Incandescent",
+      "D. 螢光燈 Fluorescent"
+    ],
+    answer: "D"
+  },
+  {
+    question: "有⼀場發動機火災，你試圖記得可能的原因，在訊息決策程序裡你在那裡？\nThere is an engine fire; you try to recall possible causes. Where are you in the information/decision process?",
+    options: [
+      "A. 注意 Attention",
+      "B. 輸入 Input",
+      "C. 決定 Decision",
+      "D. 回饋 Feedback"
+    ],
+    answer: "D"
+  },
+  {
+    question: "哪種模型顯⽰⼀項複雜的任務會增加錯誤的機會?\nWhich model shows that complex tasks increase the chance of error?",
+    options: [
+      "A. 瑞⼠起司模型 Swiss Cheese model",
+      "B. 錯誤冰⼭ Error Iceberg",
+      "C. 螺⺟與螺栓拆裝 Nuts and Bolts",
+      "D. Dirty Dozen"
+    ],
+    answer: "C"
+  },
+  {
+    question: "⼯作前，書⾯指導的重要性是甚麼?\nWhat is the importance of written instructions before work?",
+    options: [
+      "A. 提供良好⼼理與⽣理互動 Provides good psycho-physiological interaction",
+      "B. 減少疲勞和壓⼒ Reduces fatigue and stress",
+      "C. 可免除對執⾏⼯作的疑慮 Removes doubts about performing the job",
+      "D. 消除同事間的溝通需求 Eliminates the need for coworker communication"
+    ],
+    answer: "C"
+  },
+  {
+    question: "航空組織⼯作的負責⼈指誰?\nWho is responsible for a work task in an aviation organization?",
+    options: [
+      "A. 安全經理 Safety manager",
+      "B. 品管經理 Quality manager",
+      "C. ⼩組/團隊領導 Team/Group leader",
+      "D. 公司負責⼈ Accountable executive"
+    ],
+    answer: "C"
+  },
+  {
+    question: "決定⼈際溝通的品質與有效性的因素是？\nWhich factor determines the quality and effectiveness of interpersonal communication?",
+    options: [
+      "A. 簡潔度 Conciseness",
+      "B. 完整性 Completeness",
+      "C. 清晰度 Clarity",
+      "D. 可理解性 Comprehensibility"
+    ],
+    answer: "B"
+  },
+  {
+    question: "壓⼒是⼀個正常的⽣活和健康的⼀部分是屬於…\nStress that is a normal and healthy part of life is…",
+    options: [
+      "A. …正⾯的 Positive",
+      "B. …負⾯的 Negative",
+      "C. …累積的 Cumulative",
+      "D. …中性的 Neutral"
+    ],
+    answer: "A"
+  },
+  {
+    question: "你被賦予去執⾏數個新的⼯作，因為你是⼀個好的⼯作者，你最有可能犯錯由於…\nYou’re given several new jobs because you’re a good worker. You’re most likely to err due to…",
+    options: [
+      "A. …採取走捷徑 Taking shortcuts",
+      "B. …過度刺激 Overstimulation",
+      "C. …環境因素 Environmental factors",
+      "D. …未受到刺激 Understimulation"
+    ],
+    answer: "B"
+  },
+  {
+    question: "⼀個好的團隊是每個成員都有…\nA good team is one where each member has…",
+    options: [
+      "A. 投入 Involvement/engagement",
+      "B. 產出 Output",
+      "C. 意⾒ Opinions",
+      "D. ⼯作 Jobs"
+    ],
+    answer: "A"
+  },
+  {
+    question: "近視須以何種鏡片加以矯正？\nMyopia is corrected with which lens?",
+    options: [
+      "A. 凹透鏡 Concave lens",
+      "B. 雙光眼鏡 Bifocals",
+      "C. 凸透鏡 Convex lens",
+      "D. 平⾯鏡片 Plano lens"
+    ],
+    answer: "A"
+  },
+  {
+    question: "⼯程師檢查安定⾯的配平插孔螺絲沒有看到⼀斷裂導線，這是何種失誤？\nOn inspection of the stabilizer trim jack screw the engineer does not see a broken hanging wire. What type of failing?",
+    options: [
+      "A. 分散注意⼒ Divided attention",
+      "B. 集中注意⼒ Focused attention",
+      "C. 選擇性注意⼒ Selective attention"
+    ],
+    answer: "A"
+  }, {
+    question: "影響⾝體⽣理節奏之最普遍因素為?\nwhat is the most common terms of disturbance of body rhythm?",
+    options: [
+      "A. 周末 weekend",
+      "B. 時差 jet lag",
+      "C. 加班 overtime"
+    ],
+    answer: "C"
+  },
+  {
+    question: "當使⽤⼀個滅火器時妳⼤約可靠近火源多遠距離\napproximately how close should you be to a fire when using an extinguisher?",
+    options: [
+      "A. 2 to 4 feet",
+      "B. 4 to 6 feet",
+      "C. 6 to 8 feet"
+    ],
+    answer: "C"
+  },
+  {
+    question: "⼀個⾃信⼼不強的⼈\na person with low self-esteem is",
+    options: [
+      "A. 減少可能順從同儕的壓⼒ less likely to conform to peer pressure",
+      "B. 增加可能順從同儕的壓⼒ more likely to conform to peer pressure",
+      "C. 順應同儕的壓⼒但不影響⾃尊的等級 Conformity to peer pressure is not affected by level of self-esteem"
+    ],
+    answer: "B"
+  },
+  {
+    question: "眼睛需要時間來適應不同層次的光強度。是⼀種\nthe eye requires time to adjust to varying levels of light intensity because the",
+    options: [
+      "A. 光化學程序 photochemical process",
+      "B. 電化學程序 electrochemical process",
+      "C. 神經傳導程序 nerve transmit process"
+    ],
+    answer: "A"
+  },
+  {
+    question: "在顯⽰器中，⼯作⼈員必須立即採取⾏動以保持系統安全的資訊是屬於\nIn display signal, the crew must react in order to maintain the system safety is",
+    options: [
+      "A. 警告 warning",
+      "B. 提醒 alert",
+      "C. 諮詢 advisory"
+    ],
+    answer: "B"
+  },
+  {
+    question: "從SHELL模型的觀點，空間迷向的問題屬於哪⼀個界⾯\nFrom SHELL model, the space disorientation problems belong to which interface",
+    options: [
+      "A. ⼈-軟體 liveware-software",
+      "B. ⼈-環境 liveware-environment",
+      "C. ⼈-硬體 liveware-hardware"
+    ],
+    answer: "B"
+  },
+  {
+    question: "什麼是⼈們對不同的氣候條件的容許限度?\nwhat are the levels of tolerance people have to different climatic conditions?",
+    options: [
+      "A. 最理想的溫度範圍(⾼⾄低)約10°C the range of optimum temperature (high to low) is about 10°C",
+      "B. 最理想的溫度範圍(⾼⾄低)約15°C the range of optimum temperature (high to low) is about 15°C",
+      "C. 最理想的溫度範圍(⾼⾄低)約7°C the range of optimum temperature (high to low) is about 7°C"
+    ],
+    answer: "C"
+  },
+  {
+    question: "實施⼼肺復甦術(氣道、呼吸、循環)胸部按壓是屬於",
+    options: [
+      "A. 循環急救 circulation first aid",
+      "B. 呼吸急救 breathing first aid",
+      "C. 氣道和呼吸急救 airway and breathing first aid"
+    ],
+    answer: "A"
+  },
+  {
+    question: "當指令的格式各不相同，針對⼯作指令有效性的因素何者影響最⼤\nWhat factor of effective work instruction is most affected when instructions use different formats?",
+    options: [
+      "A. 指令的可達性 accessibility of instruction",
+      "B. 指令的⼀致性 consistency of instruction",
+      "C. 指令的公信⼒ credibility of instruction"
+    ],
+    answer: "B"
+  },
+  {
+    question: "哪個模型指⽰錯誤可以因重複檢查及交互檢查⽽停⽌?",
+    options: [
+      "A. 錯誤冰⼭ Error Iceberg",
+      "B. 瑞⼠起司理論 Swiss Cheese Model",
+      "C. Dirty Dozen"
+    ],
+    answer: "B"
+  },
+  {
+    question: "航空器事故涉及⼈為因素問題時，與錯誤鏈的關係如何?",
+    options: [
+      "A. ⼈為因素問題是第⼀個錯誤鏈的連結",
+      "B. ⼈為因素問題是最後⼀個錯誤鏈的連結",
+      "C. ⼈為因素問題是所有錯誤鏈的連結"
+    ],
+    answer: "C"
+  },
+  {
+    question: "最常⾒的⾶機意外事件都可以追溯為\nThe most of aircraft incidents can be traced to",
+    options: [
+      "A. 技術問題 Technical Problem",
+      "B. ⼈為疏失 Human Error",
+      "C. 管理失誤 Management Error",
+      "D. 製造廠 Manufacture"
+    ],
+    answer: "B"
+  },
+  {
+    question: "⼀名⼯程師在⼀次⽔平尾翼鉚釘檢查時疏忽了⼀條裂縫。這種過失有可能是什麼原因引起的?\nAn engineer misses a crack during a rivet inspection of the horizontal stabilizer. This failing would most likely be caused by?",
+    options: [
+      "A. 懼⾼症 Acrophobia",
+      "B. 廣場恐懼症 Agoraphobia",
+      "C. 幽閉恐懼症 Claustrophobia",
+      "D. 恐懼蜘蛛症 Arachnephobia"
+    ],
+    answer: "A"
+  },
+  {
+    question: "在⼀個強⽽有⼒的安全⽂化組織中，下列何者不是重要的部分？\nWhat is NOT a key component in an organization with a strong safety culture?",
+    options: [
+      "A. 信息共享 Sharing of information",
+      "B. 信任的氣氛 An atmosphere of trust",
+      "C. 秘密會議 A hidden agenda",
+      "D. 尊重知識 Respect for knowledge"
+    ],
+    answer: "C"
+  },
+  {
+    question: "噪⾳、照明與溫度，何者與維修⼈為因素有關？",
+    options: [
+      "A. 噪⾳ Noise",
+      "B. 照明 Lighting",
+      "C. 溫度 Temperature",
+      "D. 皆有關 All of the above"
+    ],
+    answer: "D"
+  },
+  {
+    question: "⾶機機棚內的燈光應該⾄少\nArea lighting in hangar should be at least",
+    options: [
+      "A. 能看清⼿冊⽂字並確認裝備位置 Enabling to clearly read manual text and affirm equipment locations.",
+      "B. 與正午機坪作業相同 As bright as the lightness at noon on ramp.",
+      "C. 無所謂 Doesn't matter",
+      "D. 能辨認⾶機外型輪廓 Enabling to recognize airplanes' shapes."
+    ],
+    answer: "A"
   }
 
 
