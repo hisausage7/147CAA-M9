@@ -1417,7 +1417,7 @@
       "C. 因為沒有缺陷指出，這個項⽬是可以接受的。 This entry is acceptable because NO defects are noted.",
       "D. 這個項⽬是不能接受的，因為它只有⼀個簽名。 This entry is NOT acceptable because it only has one signature."
     ],
-    answer: "B"
+    answer: "A"
   },
   {
     question: "在⾶航⽇誌中你發現輸入以下信息：2011/Nov/13;更換襟翼唧筒O形環;液壓系統;約翰 A ·史密斯 A&P689143IA\n什麼說法是正確的針對這個登錄？\nIn the log book you find the following information entered:\n2011/Nov/13; replaced o-rings flap cylinder; hydraulic system; John A. Smith A&P689143IA\nWhat statement is true for this entry?",
@@ -1477,7 +1477,7 @@
       "C. 僅（1）和（3） (1) and (3) only",
       "D. (1), (2) 和 (3) (1), (2) and (3)"
     ],
-    answer: "A"
+    answer: "B"
   },
   {
     question: "墨菲定律是什麼呢？\nWhat is Murphy's law?",
@@ -1886,7 +1886,7 @@
       "B. 集中注意⼒ Focused attention",
       "C. 選擇性注意⼒ Selective attention"
     ],
-    answer: "A"
+    answer: "C"
   }, {
     question: "影響⾝體⽣理節奏之最普遍因素為?\nwhat is the most common terms of disturbance of body rhythm?",
     options: [
