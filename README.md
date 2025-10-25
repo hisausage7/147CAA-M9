@@ -1,106 +1,164 @@
 <吃飽太閒做的網站，能幫到你我覺得很開心>
-<!DOCTYPE html>
 <html lang="zh-Hant">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>147測驗｜單一檔案版</title>
-    <style>
-      /* 回首頁浮動按鈕 */
-      #homeBtn {
-        position: absolute;
-        top: 100px; /* 深色模式按鈕在 20px，這裡放在它下方 */
-        right: 20px;
-        padding: 10px 20px;
-        background: #28a745;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 1em;
-        box-shadow: 0 4px 12px rgba(0,0,0,.15);
-        transition: background .3s, transform .2s, box-shadow .2s;
-        z-index: 1000;
-      }
-      #homeBtn:hover { background: #218838; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.25); }
-      body.dark #homeBtn { background: #2e7d32; }
-      body.dark #homeBtn:hover { background: #25652a; }
 
+    <!-- 預先套用主題避免閃爍 -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('preload-dark');
+            document.documentElement.setAttribute('data-theme','dark');
+          }
+        } catch(e){}
+      })();
+    </script>
+
+    <style>
+      :root{
+        --bg:#f0f4f8; --txt:#000; --card:#fff; --rule:#e9ecef; --muted:#666;
+        --primary:#007bff; --primary-800:#0056b3; --danger:#dc3545;
+        --green:#28a745; --green-800:#218838; --teal:#17a2b8; --teal-800:#138496;
+        --table-bd:#ccc;
+
+        /* 正解強調（淺色） */
+        --ans-chip-bg:#e7f6ec; --ans-chip-fg:#136d3a;
+        --ans-row-bg:#f5fbf7; --ans-row-bd:#cce8d5;
+      }
+      body.dark {
+        --bg:#121212; --txt:#fff; --card:#1e1e1e; --rule:#333; --table-bd:#444; --muted:#aaa;
+
+        /* 正解強調（深色） */
+        --ans-chip-bg:#1f3a29; --ans-chip-fg:#b9f6ca;
+        --ans-row-bg:#12301f; --ans-row-bd:#2c5a3f;
+      }
+
+      html, body { height: 100%; }
       body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 40px;
-        font-size: 1.6em;
-        background: #f0f4f8;
-        color: #000;
-        transition: background-color 0.5s, color 0.5s;
+        /* 基礎自適應字級（桌機普遍上限 24px） */
+        font-size: clamp(16px, 1.1vw + 12px, 24px);
+        background: var(--bg);
+        color: var(--txt);
+        transition: background-color .4s, color .4s;
       }
-      body.dark { background: #121212; color: #fff; }
-      #container {
-        max-width: 1200px; margin: auto; background: #fff; padding: 40px;
-        border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,.1);
-        transition: background-color .5s, color .5s;
-      }
-      body.dark #container { background: #1e1e1e; }
-      .hidden { display: none; }
-      h1, h2 { text-align: center; font-size: 2.4em; }
-      #rules { background: #e9ecef; padding: 20px; margin-bottom: 40px; border-radius: 10px; font-size: 1.2em; }
-      body.dark #rules { background: #333; }
-      .btn {
-        background: #007bff; color: #fff; border: none; padding: 20px 40px;
-        margin: 10px; border-radius: 10px; cursor: pointer; font-size: 1.2em;
-        transition: background-color .3s;
-      }
-      .btn:hover { background: #0056b3; }
-      #leaveBtn { background: #dc3545; }
-      #openBankBtn { background: #17a2b8; }
-      #openBankBtn:hover { background: #138496; }
-      #progress, #timer { font-weight: bold; font-size: 1.4em; }
-      .progress-container { background: #ddd; height: 10px; border-radius: 5px; margin-top: 20px; overflow: hidden; }
-      body.dark .progress-container { background: #555; }
-      .progress-bar { height: 100%; width: 0; background: #007bff; transition: width .6s ease; }
-      .question { margin: 40px 0 20px; font-size: 1.8em; }
-      .options label { display: block; margin-bottom: 16px; font-size: 1.4em; }
-      table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 1.0em; }
-      th, td { border: 1px solid #ccc; padding: 12px 14px; text-align: left; vertical-align: top; }
-      tr.wrong { background-color: #ffe6e6; }
-      body.dark tr.wrong { background-color: #661111; }
-      #darkModeToggle {
-        position: absolute; top: 20px; right: 20px; padding: 10px 20px;
-        background: #333; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 1em;
-        transition: background .3s;
-      }
-      #darkModeToggle:hover { background: #555; }
 
-      /* 題庫瀏覽區塊 */
-      #bank .controls {
-        display: grid;
-        grid-template-columns: 1fr auto auto;
-        gap: 12px;
-        align-items: center;
-        margin: 10px 0 20px;
+      #container {
+        max-width: 1320px; margin: auto; background: var(--card); padding: 40px;
+        border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,.1);
+        transition: background-color .4s, color .4s;
       }
-      #bank .controls input[type="text"] {
-        width: 100%; padding: 10px 12px; font-size: 1em; border-radius: 8px; border: 1px solid #bbb;
-        background: transparent; color: inherit;
+
+      .hidden { display: none; }
+      h1, h2 { text-align: center; font-size: 1.6em; margin: .2em 0 .6em; }
+      #rules { background: var(--rule); padding: 16px; margin-bottom: 28px; border-radius: 10px; font-size: .95em; }
+
+      .btn {
+        background: var(--primary); color: #fff; border: none; padding: 14px 24px;
+        margin: 8px; border-radius: 10px; cursor: pointer; font-size: .95em;
+        transition: background-color .2s, transform .1s;
+        white-space: nowrap;
       }
-      #bank .controls label { font-size: .9em; }
-      #bank .pagination {
-        display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 14px;
+      .btn:hover { background: var(--primary-800); }
+      #leaveBtn { background: var(--danger); }
+      #openBankBtn { background: var(--teal); }
+      #openBankBtn:hover { background: var(--teal-800); }
+
+      /* 進度條 */
+      #progress, #timer { font-weight: bold; font-size: 1em; }
+      .progress-container { background: #ddd; height: 10px; border-radius: 5px; margin-top: 14px; overflow: hidden; }
+      body.dark .progress-container { background: #555; }
+      .progress-bar { height: 100%; width: 0; background: var(--primary); transition: width .6s ease; }
+
+      .question { margin: 24px 0 12px; font-size: 1.2em; }
+      .options label { display: block; margin-bottom: 12px; font-size: 1em; }
+
+      /* 表格與響應式容器 */
+      .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 1em; min-width: 460px; }
+      th, td {
+        border: 1px solid var(--table-bd); padding: 12px 14px; text-align: left; vertical-align: top;
+        color: var(--txt); word-break: break-word;
       }
-      #bank .pagination button { padding: 10px 16px; font-size: 1em; }
-      #bank small { color: #666; }
-      body.dark #bank small { color: #aaa; }
-      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-      .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: .8em; }
-      .tag.correct { background: #e6f4ea; color: #137333; }
-      body.dark .tag.correct { background: #163b22; color: #7ee2a8; }
-      .muted { opacity: .8; }
+
+      /* 錯題列色（深色模式改亮字） */
+      tr.wrong { background-color: #ffe6e6; }
+      body.dark tr.wrong { background-color: #5a1a1a; }
+      body.dark tr.wrong td { color: #fff; }
+
+      /* 正解強調（提高優先度，避免被錯題底色吃掉） */
+      .ans-chip { display:inline-block; padding:2px 8px; border-radius:999px; background: var(--ans-chip-bg); color: var(--ans-chip-fg); font-size:.9em; margin-right:6px; }
+      .ans-cell  { background: var(--ans-row-bg) !important; border-left: 3px solid var(--ans-row-bd) !important; color: var(--txt) !important; }
+      .opt-row   { display:block; padding:4px 6px; margin:2px 0; border-radius:6px; }
+      .opt-row.is-correct { background: var(--ans-row-bg) !important; border-left: 3px solid var(--ans-row-bd) !important; color: var(--txt) !important; }
+      tr.wrong td.ans-cell { background: var(--ans-row-bg) !important; color: var(--txt) !important; }
+
+      /* 右上角按鈕固定 */
+      #darkModeToggle, #homeBtn {
+        position: fixed; right: 20px; padding: 10px 16px; border: none; border-radius: 8px;
+        cursor: pointer; font-size: .95em; z-index: 2000; box-shadow: 0 4px 12px rgba(0,0,0,.15);
+      }
+      #darkModeToggle { top: 20px; background: #333; color: #fff; }
+      #darkModeToggle:hover { background: #555; }
+      #homeBtn { top: 68px; background: var(--green); color: #fff; text-decoration: none; }
+      #homeBtn:hover { background: var(--green-800); }
+
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace; }
+      .muted { opacity: .8; color: var(--muted); }
+
+      /* 小尺寸優化 */
+      @media (max-width: 768px) {
+        body { padding: 20px; font-size: clamp(14px, 2.2vw + 8px, 17px); }
+        #container { padding: 20px; border-radius: 16px; }
+        .btn { padding: 12px 16px; margin: 6px; font-size: .95em; }
+        #darkModeToggle, #homeBtn { right: 12px; }
+        #darkModeToggle { top: 12px; }
+        #homeBtn { top: 56px; }
+      }
+      @media (max-width: 540px) {
+        /* 手機上把「您的答案」隱藏，保留題目/正解/OX */
+        #results table th:nth-child(2), #results table td:nth-child(2) { display:none; }
+      }
+      @media (max-width: 420px) {
+        #bank .controls { display: grid; grid-template-columns: 1fr; gap: 8px; }
+      }
+
+      /* —— 大螢幕加碼放大（到 4K 前） —— */
+      @media (min-width: 1200px) {
+        body       { font-size: clamp(18px, 0.9vw + 12px, 26px); }
+        #container { max-width: 1440px; }
+        h1, h2     { font-size: 2rem; }
+      }
+      @media (min-width: 1800px) {
+        body       { font-size: clamp(20px, 0.7vw + 12px, 28px); }
+        #container { max-width: 1680px; }
+        h1, h2     { font-size: 2.2rem; }
+      }
+      @media (min-width: 2400px) {
+        body       { font-size: clamp(22px, 0.6vw + 14px, 32px); }
+        #container { max-width: 1920px; }
+        h1, h2     { font-size: 2.4rem; }
+      }
+
+      /* —— 2560×1440（含以上）專用上限 —— */
+      @media (min-width: 2560px) and (min-height: 1400px) {
+        body       { font-size: clamp(22px, 0.55vw + 16px, 34px); } /* 上限 34px */
+        #container { max-width: 2000px; }
+        h1, h2     { font-size: 2.6rem; }
+      }
+
+      /* 預載深色（head 腳本使用），load 後會移除 */
+      .preload-dark body, .preload-dark { background:#121212; color:#fff; }
     </style>
   </head>
   <body>
-    <!-- 吃飽太閒做的網站，能幫到你我覺得很開心 -->
-    <button id="darkModeToggle">深色模式 / Dark Mode</button>
+    <button id="darkModeToggle" aria-pressed="false">深色模式 / Dark Mode</button>
     <a id="homeBtn" href="https://hisausage7.github.io/147test/" title="回首頁">🏠 回首頁</a>
 
     <div id="container">
@@ -119,20 +177,20 @@
           <p>!僅作為自我測驗使用!</p>
         </div>
         <input type="text" id="nameInput" placeholder="輸入姓名 / Enter your name"
-               style="width:100%;padding:8px;margin-bottom:10px;font-size:1.4em;" />
+               style="width:100%;padding:8px;margin-bottom:10px;font-size:1em;" />
         <input type="number" id="questionLimit" placeholder="輸入題數,至多201題 / Enter number of questions"
-               style="width:100%;padding:8px;margin-bottom:10px;font-size:1.4em;" />
-        <div style="text-align:center">
+               style="width:100%;padding:8px;margin-bottom:10px;font-size:1em;" />
+        <div style="text-align:center; display:flex; flex-wrap:wrap; justify-content:center;">
           <button id="startBtn" class="btn">開始測驗 / Start Quiz</button>
           <button id="openBankBtn" class="btn">題庫瀏覽 / Browse Bank</button>
         </div>
       </div>
 
-      <!-- 測驗頁（已移除題庫瀏覽按鈕） -->
+      <!-- 測驗頁 -->
       <div id="quiz" class="hidden">
-        <div>
+        <div style="display:flex; align-items:center; gap:8px;">
           <span id="welcomeName"></span>
-          <span id="timer" style="float:right">80:00</span>
+          <span id="timer" style="margin-left:auto">80:00</span>
         </div>
         <div class="mono" id="progress">題數: <span id="current">0</span> / <span id="total">0</span></div>
         <div class="progress-container"><div id="progressBar" class="progress-bar"></div></div>
@@ -144,25 +202,27 @@
         </div>
       </div>
 
-      <!-- 結果頁（可瀏覽題庫，不算測驗進行中） -->
+      <!-- 結果頁 -->
       <div id="results" class="hidden">
         <h2>測驗結果 / Results</h2>
-        <div>
+        <div style="display:flex; flex-wrap:wrap; justify-content:center;">
           <button id="retryBtn" class="btn">重新開始 / Retry</button>
           <button id="showWrongBtn" class="btn" style="background:#ffc107">只看錯題 / Wrong Only</button>
           <button id="showAllBtn" class="btn">看全部結果 / Show All</button>
           <button id="toBankFromResults" class="btn" style="background:#17a2b8">題庫瀏覽 / Browse Bank</button>
         </div>
-        <table>
-          <thead>
-            <tr><th>題目</th><th>您的答案</th><th>正確答案</th><th>結果</th></tr>
-          </thead>
-          <tbody id="resultsBody"></tbody>
-        </table>
-        <div id="scoreSummary" style="text-align:center;margin-top:20px;font-size:1.2em"></div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr><th>題目</th><th>您的答案</th><th>正確答案</th><th>結果</th></tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+        <div id="scoreSummary" style="text-align:center;margin-top:12px;font-size:1em"></div>
       </div>
 
-      <!-- 題庫瀏覽頁（預設顯示答案；已移除顯示開關） -->
+      <!-- 題庫瀏覽頁 -->
       <div id="bank" class="hidden">
         <h2>題庫瀏覽 / Question Bank</h2>
         <div class="controls">
@@ -179,23 +239,25 @@
           </label>
           <button id="backToWelcome" class="btn" style="padding:12px 18px">返回首頁 / Home</button>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th style="width:70px">#</th>
-              <th>題目</th>
-              <th style="width:34%">選項</th>
-              <th style="width:140px">正確答案</th>
-            </tr>
-          </thead>
-          <tbody id="bankBody"></tbody>
-        </table>
-        <div class="pagination">
-          <button id="prevPage" class="btn" style="padding:12px 18px">上一頁</button>
-          <span id="pageInfo" class="mono"></span>
-          <button id="nextPage" class="btn" style="padding:12px 18px">下一頁</button>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:70px">#</th>
+                <th>題目</th>
+                <th style="width:34%">選項</th>
+                <th style="width:160px">正確答案</th>
+              </tr>
+            </thead>
+            <tbody id="bankBody"></tbody>
+          </table>
         </div>
-        <div style="text-align:center;margin-top:10px">
+        <div class="pagination" style="display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px;">
+          <button id="prevPage" class="btn" style="padding:10px 16px">上一頁</button>
+          <span id="pageInfo" class="mono"></span>
+          <button id="nextPage" class="btn" style="padding:10px 16px">下一頁</button>
+        </div>
+        <div style="text-align:center;margin-top:8px">
           <small class="muted">提示：可用右上角「深色模式」切換外觀；搜尋支援中英文與數字。</small>
         </div>
       </div>
@@ -2077,10 +2139,29 @@
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
+        /* ====== 深色模式：持久化 ====== */
+        const darkBtn = document.getElementById("darkModeToggle");
+        function applyInitialTheme() {
+          try {
+            const saved = localStorage.getItem('theme');
+            const isDark = (saved === 'dark') || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            document.body.classList.toggle('dark', isDark);
+            darkBtn.setAttribute('aria-pressed', String(isDark));
+          } catch(e) {}
+          document.documentElement.classList.remove('preload-dark');
+        }
+        applyInitialTheme();
+        darkBtn.addEventListener('click', function(){
+          const willDark = !document.body.classList.contains('dark');
+          document.body.classList.toggle('dark', willDark);
+          darkBtn.setAttribute('aria-pressed', String(willDark));
+          try { localStorage.setItem('theme', willDark ? 'dark' : 'light'); } catch(e){}
+        });
+
         /* ====== 測驗狀態 ====== */
         let shuffledQuestions;
         let current = 0, total = 0, timer = 80 * 60, interval, answers = [];
-        let quizActive = false; // 測驗是否進行中
+        let quizActive = false;
         const progressBar = document.getElementById("progressBar");
 
         /* ====== 元件 ====== */
@@ -2090,11 +2171,10 @@
         const retryBtn = document.getElementById("retryBtn");
         const showWrongBtn = document.getElementById("showWrongBtn");
         const showAllBtn = document.getElementById("showAllBtn");
-        const darkModeToggle = document.getElementById("darkModeToggle");
         const openBankBtn = document.getElementById("openBankBtn");
         const toBankFromResults = document.getElementById("toBankFromResults");
 
-        /* ====== 題庫瀏覽狀態/元件 ====== */
+        /* ====== 題庫瀏覽 ====== */
         const bankBody = document.getElementById("bankBody");
         const bankSearch = document.getElementById("bankSearch");
         const perPageSel = document.getElementById("perPage");
@@ -2112,7 +2192,7 @@
           return Math.max(1, Math.ceil(bankFiltered.length / parseInt(sel || "10")));
         }
 
-        /* ====== 事件綁定：測驗流程 ====== */
+        /* ====== 測驗流程 ====== */
         startBtn.addEventListener("click", () => {
           const n = document.getElementById("nameInput").value.trim();
           const qLimit = parseInt(document.getElementById("questionLimit").value);
@@ -2123,7 +2203,7 @@
           shuffledQuestions = shuffle(questions.slice()).slice(0, Math.min(qLimit, questions.length));
           total = shuffledQuestions.length;
           current = 0; answers = []; timer = 80 * 60;
-          quizActive = true; // 進入測驗狀態
+          quizActive = true;
 
           document.getElementById("welcomeName").innerText = "歡迎: " + n;
           document.getElementById("total").innerText = total;
@@ -2153,83 +2233,56 @@
 
         leaveBtn.addEventListener("click", finish);
         retryBtn.addEventListener("click", () => location.reload());
-        showWrongBtn.addEventListener("click", filterResultsWrong);
-        showAllBtn.addEventListener("click", showAllResults);
-        darkModeToggle.addEventListener("click", () => document.body.classList.toggle("dark"));
-        openBankBtn.addEventListener("click", () => { enterBank(); });
-        toBankFromResults.addEventListener("click", () => { enterBank(); });
+        showWrongBtn.addEventListener("click", () => renderResults(answers.filter(a => !a.correct)));
+        showAllBtn.addEventListener("click", () => renderResults(answers));
+        openBankBtn.addEventListener("click", enterBank);
+        toBankFromResults.addEventListener("click", enterBank);
 
-        /* ====== 題庫瀏覽事件 ====== */
-        bankSearch.addEventListener("input", function () {
-          applyFilter();
-        });
-        perPageSel.addEventListener("change", function () {
-          page = 1;
-          renderBank();
-        });
-        prevPageBtn.addEventListener("click", function () {
-          if (page > 1) { page--; renderBank(); }
-        });
-        nextPageBtn.addEventListener("click", function () {
-          if (page < totalPages()) { page++; renderBank(); }
-        });
-        backToWelcome.addEventListener("click", function () {
-          showView("welcome");
-        });
+        /* ====== 題庫事件 ====== */
+        bankSearch.addEventListener("input", applyFilter);
+        perPageSel.addEventListener("change", () => { page = 1; renderBank(); });
+        prevPageBtn.addEventListener("click", () => { if (page > 1) { page--; renderBank(); } });
+        nextPageBtn.addEventListener("click", () => { if (page < totalPages()) { page++; renderBank(); } });
+        backToWelcome.addEventListener("click", () => showView("welcome"));
 
-        /* ====== 畫面切換：進入題庫 ====== */
         function enterBank() {
-          // 防呆：測驗進行中禁止進入題庫
-          if (quizActive) {
-            alert("測驗進行中不可瀏覽題庫。請先完成或離開考試。");
-            return;
-          }
-          if (!bankSearch.value) {
-            bankFiltered = questions.slice();
-            page = 1;
-          }
+          if (quizActive) { alert("測驗進行中不可瀏覽題庫。請先完成或離開考試。"); return; }
+          if (!bankSearch.value) { bankFiltered = questions.slice(); page = 1; }
           renderBank();
           showView("bank");
         }
 
-        /* ====== 題庫：搜尋/篩選與渲染 ====== */
         function applyFilter() {
           const kw = bankSearch.value.trim().toLowerCase();
-          if (!kw) {
-            bankFiltered = questions.slice();
-          } else {
-            bankFiltered = questions.filter(function (q) {
-              const inQ = q.question.toLowerCase().indexOf(kw) !== -1;
-              const inOpts = q.options.some(function (o) { return o.toLowerCase().indexOf(kw) !== -1; });
-              return inQ || inOpts;
-            });
-          }
-          page = 1;
-          renderBank();
+          bankFiltered = kw
+            ? questions.filter(q => q.question.toLowerCase().includes(kw) ||
+                                    q.options.some(o => o.toLowerCase().includes(kw)))
+            : questions.slice();
+          page = 1; renderBank();
         }
 
         function renderBank() {
           bankBody.innerHTML = "";
-
           const sel = perPageSel.value;
           const per = (sel === 'all') ? bankFiltered.length : parseInt(sel || "10");
           const start = (page - 1) * per;
           const items = (sel === 'all') ? bankFiltered.slice() : bankFiltered.slice(start, start + per);
 
-          items.forEach(function (q, idx) {
+          items.forEach((q, idx) => {
             const tr = document.createElement("tr");
             const num = (sel === 'all') ? (idx + 1) : (start + idx + 1);
-            const correctText = q.options.find(function (o) { return o.charAt(0) === q.answer; }) || "";
-            const optsHtml = q.options.map(function (o) {
-              const mark = (o.charAt(0) === q.answer) ? '<span class="tag correct">正解</span> ' : "";
-              return mark + o;
-            }).join("<br>");
+            const correctText = q.options.find(o => o.charAt(0) === q.answer) || "";
+
+            const optsHtml = q.options.map(o => {
+              const isC = (o.charAt(0) === q.answer);
+              return `<span class="opt-row ${isC ? 'is-correct' : ''}">${isC ? '<span class="ans-chip">正解</span>' : ''}${o}</span>`;
+            }).join("");
 
             tr.innerHTML =
               '<td class="mono">#' + num + "</td>" +
               "<td>" + q.question + "</td>" +
               "<td>" + optsHtml + "</td>" +
-              '<td class="mono">' + (q.answer + "｜" + correctText) + "</td>";
+              '<td class="mono ans-cell">' + (q.answer + "｜" + correctText) + "</td>";
             bankBody.append(tr);
           });
 
@@ -2237,13 +2290,11 @@
           if (sel === 'all') {
             if (pagination) pagination.style.display = 'none';
             pageInfo.textContent = "全部顯示（共 " + bankFiltered.length + " 題）";
-            prevPageBtn.disabled = true;
-            nextPageBtn.disabled = true;
+            prevPageBtn.disabled = true; nextPageBtn.disabled = true;
           } else {
             if (pagination) pagination.style.display = 'flex';
             pageInfo.textContent = "第 " + page + " / " + tp + " 頁（共 " + bankFiltered.length + " 題）";
-            prevPageBtn.disabled = (page <= 1);
-            nextPageBtn.disabled = (page >= tp);
+            prevPageBtn.disabled = (page <= 1); nextPageBtn.disabled = (page >= tp);
           }
         }
 
@@ -2259,29 +2310,20 @@
           const optDiv = document.getElementById("options");
           optDiv.innerHTML = "";
 
-          let optionsWithFlag = q.options.map(function (option) {
-            return {
-              text: option,
-              isAnswer: option.charAt(0) === q.answer
-            };
-          });
+          let optionsWithFlag = q.options.map(option => ({ text: option, isAnswer: option.charAt(0) === q.answer }));
           optionsWithFlag = shuffle(optionsWithFlag);
 
-          optionsWithFlag.forEach(function (opt) {
+          optionsWithFlag.forEach(opt => {
             const lbl = document.createElement("label");
             const rd = document.createElement("input");
-            rd.type = "radio";
-            rd.name = "opt";
-            rd.value = opt.text;
+            rd.type = "radio"; rd.name = "opt"; rd.value = opt.text;
             rd.onchange = function () {
               answers.push({
-                q: q,
-                selectedText: opt.text,
-                correctText: q.options.find(function (optItem) { return optItem.charAt(0) === q.answer; }),
+                q, selectedText: opt.text,
+                correctText: q.options.find(optItem => optItem.charAt(0) === q.answer),
                 correct: opt.isAnswer
               });
-              current++;
-              showQ();
+              current++; showQ();
             };
             lbl.append(rd, " ", opt.text);
             optDiv.append(lbl);
@@ -2295,34 +2337,32 @@
 
         function finish() {
           clearInterval(interval);
-          quizActive = false; // 結束測驗，允許瀏覽題庫
+          quizActive = false; // 結束後可進入題庫
           showView("results");
           renderResults(answers);
           document.getElementById("scoreSummary").innerText =
-            "答對 " + answers.filter(function (a) { return a.correct; }).length +
+            "答對 " + answers.filter(a => a.correct).length +
             " 題 / 已作答 " + answers.length + " 題 / 共 " + total + " 題";
         }
 
         function renderResults(data) {
           const tb = document.getElementById("resultsBody");
           tb.innerHTML = "";
-          data.forEach(function (a) {
+          data.forEach(a => {
             const tr = document.createElement("tr");
             tr.innerHTML =
               "<td>" + a.q.question + "</td>" +
               "<td>" + a.selectedText + "</td>" +
-              "<td>" + a.correctText + "</td>" +
+              '<td class="ans-cell">' + a.correctText + "</td>" +
               "<td>" + (a.correct ? "O" : "X") + "</td>";
             if (!a.correct) tr.classList.add("wrong");
             tb.append(tr);
           });
         }
-
-        function filterResultsWrong() { renderResults(answers.filter(function (a) { return !a.correct; })); }
-        function showAllResults() { renderResults(answers); }
       });
     </script>
   </body>
 </html>
+
 
 </html>
