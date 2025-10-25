@@ -120,7 +120,7 @@
         </div>
         <input type="text" id="nameInput" placeholder="輸入姓名 / Enter your name"
                style="width:100%;padding:8px;margin-bottom:10px;font-size:1.4em;" />
-        <input type="number" id="questionLimit" placeholder="輸入題數,至多5題 / Enter number of questions"
+        <input type="number" id="questionLimit" placeholder="輸入題數,至多201題 / Enter number of questions"
                style="width:100%;padding:8px;margin-bottom:10px;font-size:1.4em;" />
         <div style="text-align:center">
           <button id="startBtn" class="btn">開始測驗 / Start Quiz</button>
