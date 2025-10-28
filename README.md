@@ -2097,7 +2097,7 @@
       "D. 能辨認⾶機外型輪廓 Enabling to recognize airplanes' shapes."
     ],
     answer: "A"
-  }
+  },
   { question: "Accidents and engineering faults are.", options: ["A. insignificant and decreasing.", "B. significant and increasing.", "C. insignificant and increasing."], answer: "B" },
   { question: "Murphy's law is perpetuated mainly by.", options: ["A. violations.", "B. poor aircraft design.", "C. complacency."], answer: "C" },
   { question: "Murphy's law can be regarded as the notion.", options: ["A. 'If something can go wrong it will'.", "B. 'It can never happen to me'.", "C. 'If something goes wrong I am certain to get the blame'."], answer: "A" },
