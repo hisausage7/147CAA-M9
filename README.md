@@ -2003,15 +2003,6 @@
     answer: "A"
   },
   {
-    question: "在顯⽰器中，⼯作⼈員必須立即採取⾏動以保持系統安全的資訊是屬於\nIn display signal, the crew must react in order to maintain the system safety is",
-    options: [
-      "A. 警告 warning",
-      "B. 提醒 alert",
-      "C. 諮詢 advisory"
-    ],
-    answer: "B"
-  },
-  {
     question: "從SHELL模型的觀點，空間迷向的問題屬於哪⼀個界⾯\nFrom SHELL model, the space disorientation problems belong to which interface",
     options: [
       "A. ⼈-軟體 liveware-software",
