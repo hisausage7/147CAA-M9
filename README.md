@@ -1966,15 +1966,7 @@
       "C. 選擇性注意⼒ Selective attention"
     ],
     answer: "C"
-  }, {
-    question: "影響⾝體⽣理節奏之最普遍因素為?\nwhat is the most common terms of disturbance of body rhythm?",
-    options: [
-      "A. 周末 weekend",
-      "B. 時差 jet lag",
-      "C. 加班 overtime"
-    ],
-    answer: "C"
-  },
+  }, 
   {
     question: "當使⽤⼀個滅火器時妳⼤約可靠近火源多遠距離\napproximately how close should you be to a fire when using an extinguisher?",
     options: [
