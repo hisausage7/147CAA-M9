@@ -168,7 +168,8 @@
         <div id="rules">
           <p><strong>考試注意事項 / Exam Rules:</strong></p>
           <p>1. 請輸入姓名後才能開始作答。 / You must enter your name to start the quiz.</p>
-          <p>2. 考試限時80分鐘，自動倒數。 / The quiz is timed for 80 minutes, countdown starts immediately.</p>
+          <!-- 這行改成可自訂 -->
+          <p>2. 考試限時可自訂（預設 80 分鐘,可設定至999分鐘），開始後自動倒數。 / You can set the time limit (default 80 minutes); countdown starts on begin.</p>
           <p>3. 作答途中可隨時點擊「離開考試」提前結束。 / You can click "Leave Quiz" anytime to finish early.</p>
           <p>4. 完成後會自動顯示所有答題結果與成績。 / Results and scores will be displayed after completion.</p>
           <p>5. 答對題目顯示O，答錯題目顯示X。 / Correct answers will show O, incorrect answers will show X.</p>
@@ -179,7 +180,11 @@
         </div>
         <input type="text" id="nameInput" placeholder="輸入姓名 / Enter your name"
                style="width:100%;padding:8px;margin-bottom:10px;font-size:1em;" />
-        <input type="number" id="questionLimit" placeholder="輸入題數,更新至451題 / Enter number of questions"
+        <input type="number" id="questionLimit" placeholder="輸入題數,至多451題 / Enter number of questions"
+               style="width:100%;padding:8px;margin-bottom:10px;font-size:1em;" />
+        <!-- 新增：作答時間（分鐘），預設 80，限制 1~300 -->
+        <input type="number" id="durationInput" value="80" min="1" max="300"
+               placeholder="作答時間（分鐘，預設 80,可設定置999分鐘） / Duration in minutes"
                style="width:100%;padding:8px;margin-bottom:10px;font-size:1em;" />
         <div style="text-align:center; display:flex; flex-wrap:wrap; justify-content:center;">
           <button id="startBtn" class="btn">開始測驗 / Start Quiz</button>
@@ -2428,6 +2433,9 @@
         const backToWelcome = document.getElementById("backToWelcome");
         const pagination = document.querySelector('#bank .pagination');
 
+        // 抓取自訂時間輸入框
+        const durationInput = document.getElementById("durationInput");
+
         let bankFiltered = questions.slice();
         let page = 1;
         function totalPages() {
@@ -2444,15 +2452,25 @@
           if (!n) return alert("請輸入姓名 / Enter your name");
           if (!qLimit || qLimit <= 0) return alert("請輸入要作答的題數,最多5題 / Enter number of questions");
 
+          // 讀取自訂時間（分鐘）；預設 80，限制 1~300 分鐘
+          let minutes = parseInt((durationInput && durationInput.value) ? durationInput.value : "80");
+          if (isNaN(minutes)) minutes = 80;
+          minutes = Math.max(1, Math.min(999, minutes));
+
           shuffledQuestions = shuffle(questions.slice()).slice(0, Math.min(qLimit, questions.length));
           total = shuffledQuestions.length;
-          current = 0; answers = []; timer = 80 * 60;
+          current = 0; answers = [];
+          timer = minutes * 60;            // 用自訂分鐘
           quizActive = true;
 
           document.getElementById("welcomeName").innerText = "歡迎: " + n;
           document.getElementById("total").innerText = total;
+          // 進場前先把右上角時計顯示成正確的起始值
+          document.getElementById("timer").innerText = fmtTime(timer);
           updateProgress();
 
+          // 確保不會重複計時
+          clearInterval(interval);
           interval = setInterval(() => {
             if (timer > 0 && quizActive) {
               timer--;
@@ -2607,6 +2625,5 @@
     </script>
   </body>
 </html>
-
 
 </html>
