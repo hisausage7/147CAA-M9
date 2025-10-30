@@ -1462,7 +1462,7 @@
       "C. 發送者和接收者兩者的編碼訊息 both the sender and receiver encode the message",
       "D. 發送者和接收者兩者的解碼訊息 both the sender and receiver decode the message"
     ],
-    answer: "B"
+    answer: "C"
   },
   {
     question: "以下哪些策略是確保良好的填寫⼯作⽇誌和記錄？\n1）按照三C.\n2）要求，如有需要澄清.\n3）考慮寫⼀個安全事宜.\nWhich of the following strategies ensure good\nwriting in log books and records?\n1)Follow the three Cs.\n2)Ask if any clarification is needed.\n3)Consider writing a matter of safety.",
