@@ -1332,7 +1332,7 @@
       "C. 缺乏溝通. A lack of communication.",
       "D. ⼯作量未分配. The workload is NOT distributed."
     ],
-    answer: "C"
+    answer: "A"
   },
   {
     question: "什麼是正確的說明關於⼯作場所的刺激程度？\nWhat is a correct statement on the level of\nstimulation in the work place?",
