@@ -1882,7 +1882,7 @@
       "C. 決定 Decision",
       "D. 回饋 Feedback"
     ],
-    answer: "D"
+    answer: "B"
   },
   {
     question: "哪種模型顯⽰⼀項複雜的任務會增加錯誤的機會?\nWhich model shows that complex tasks increase the chance of error?",
